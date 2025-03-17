@@ -1,88 +1,43 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { bookType } from "./component/type";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { useState } from "react";
+
+import { Avatar, Button } from "antd";
+import Main from "./page.tsx/Main";
+import Sidebar from "./page.tsx/Sidebar";
 
 function App() {
-  const [book, setBook] = useState<bookType[]>();
+  const [collapsed, setCollapsed] = useState(true);
 
-  useEffect(() => {
-    axios
-      .get("https://library.softly.uz/api/app/books?size=20&page=1&order=DESC")
-      .then((res) => {
-        console.log(res.data.items);
-
-        setBook(res.data.items);
-      });
-  }, []);
-  if (!book) {
-    return <div>loading...</div>;
-  }
   return (
-    <div className="ml-96">
-      {book.map((item) => {
-        return (
-          <div className="flex gap-3 items-center">
-            <h2>{item.id}</h2>
-            <h2>{item.name}</h2>
+    <div>
+      <nav className="flex items-center gap-2 p-5 justify-between  bg-slate-800 text-white">
+        <div className="flex gap-1 items-center h-4">
+          <Button
+            type="link"
+            onClick={() => {
+              setCollapsed(!collapsed);
+            }}
+          >
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </Button>
+          <p>Logo</p>
+        </div>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <Avatar className="cursor-pointer " size="large" />
+          <div>
+            <p>zafarov Samandar</p>
+            <p>zafarovsamandar5444@gmail.com</p>
           </div>
-        );
-      })}
+        </div>
+      </nav>
+      <div className="flex h-full">
+        <Sidebar collapsed={collapsed} />
+        <main>
+          <Main />
+        </main>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-// import "./App.css";
-
-// function App() {
-//   const obj: {
-//     name: string;
-//     age: number;
-//   } = {
-//     name: "Samandar",
-//     age: 16,
-//   };
-
-//   const noutbook: {
-//     model: string;
-//     rasm: number;
-//     ssd: number;
-//     yangi: boolean;
-//     ekran: {
-//       hajmi: number;
-//       model: string;
-//     };
-//     portallari: {
-//       nomi: string;
-//       turi: string;
-//     }[];
-//   } = {
-//     model: "Maccbook",
-//     rasm: 8,
-//     ssd: 256,
-//     yangi: false,
-//     ekran: {
-//       hajmi: 1000,
-//       model: "AppleInc",
-//     },
-//     portallari: [
-//       {
-//         nomi: "1",
-//         turi: "USB",
-//       },
-//       {
-//         nomi: "2",
-//         turi: "TUSB",
-//       },
-//     ],
-//   };
-
-//   console.log(noutbook);
-
-//   console.log(obj);
-
-//   return <></>;
-// }
-
-// export default App;
