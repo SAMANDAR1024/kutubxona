@@ -1,12 +1,11 @@
-import { Button, Drawer, Form, Input, Select, Switch } from "antd";
+import { Button, Drawer, Form, Input, Select } from "antd";
+import { useState } from "react";
 import { useGlobalStore } from "../store/store";
 import { GetRandomId } from "../utils/utils";
-import { useState } from "react";
 
-export function StudentForm() {
-  const groups = useGlobalStore((state) => state.groups);
-
-  const students = useGlobalStore((s) => s.students);
+export function ProductsForm() {
+const catigories = useGlobalStore((state)=>state.catigoria)
+    const products = useGlobalStore((state) => state.products);
   const [form] = Form.useForm();
 
   const [open, setOpen] = useState(false);
@@ -27,22 +26,22 @@ export function StudentForm() {
         <Form
           form={form}
           onFinish={(values) => {
-            const new_students = [
+            const new_products = [
               {
                 ...values,
                 id: GetRandomId(),
               },
-              ...students,
+              ...products,
             ];
             useGlobalStore.setState({
-              students: new_students,
+                products: new_products,
             });
             form.resetFields();
           }}
         >
           <Form.Item
-            label="Ism"
-            name="firstName"
+            label="Nomi"
+            name="nomi"
             rules={[
               {
                 required: true,
@@ -51,22 +50,29 @@ export function StudentForm() {
           >
             <Input />
           </Form.Item>
-          
-
-          <Form.Item label="Guruh" name="group_id" rules={[{ required: true }]}>
+          <Form.Item
+            label="narxi"
+            name="narxi"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="catigoria" name="catigoria_id" rules={[{ required: true }]}>
             <Select
-              options={groups?.map((i) => {
+              options={catigories?.map((i) => {
                 return {
-                  label: i.name,
+                  label: i.nomi,
                   value: i.id,
                 };
               })}
             />
           </Form.Item>
 
-          <Form.Item label="Faollik" name="active">
-            <Switch />
-          </Form.Item>
+        
           <Form.Item>
             <Button
               type="primary"

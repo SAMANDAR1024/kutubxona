@@ -28,5 +28,19 @@ export const useGlobalStore = create<GlobalStoreType>(() => {
         active: false,
       },
     ],
+    products: [
+      {
+        id: GetRandomId(),
+        nomi: "noutbook",
+        narxi:200
+      },
+    ],
+    catigoria: [
+      {
+        id: GetRandomId(),
+        nomi: "Noutbook",
+        image:""
+      },
+    ],
   };
 });

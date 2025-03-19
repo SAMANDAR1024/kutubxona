@@ -1,12 +1,19 @@
-import { Button, Drawer, Form, Input, Select, Switch } from "antd";
+// function CatigoriaForm() {
+//   return (
+//     <div>CatigoriaForm</div>
+//   )
+// }
+
+// export default CatigoriaForm
+import { Button, Drawer, Form, Input, Switch } from "antd";
+import { useState } from "react";
 import { useGlobalStore } from "../store/store";
 import { GetRandomId } from "../utils/utils";
-import { useState } from "react";
 
-export function StudentForm() {
-  const groups = useGlobalStore((state) => state.groups);
+export function CatigoriaForm() {
+  const catigories = useGlobalStore((state) => state.catigoria);
 
-  const students = useGlobalStore((s) => s.students);
+  //   const students = useGlobalStore((s) => s.students);
   const [form] = Form.useForm();
 
   const [open, setOpen] = useState(false);
@@ -27,22 +34,22 @@ export function StudentForm() {
         <Form
           form={form}
           onFinish={(values) => {
-            const new_students = [
+            const new_catigories = [
               {
                 ...values,
                 id: GetRandomId(),
               },
-              ...students,
+              ...catigories,
             ];
             useGlobalStore.setState({
-              students: new_students,
+              catigoria: new_catigories,
             });
             form.resetFields();
           }}
         >
           <Form.Item
-            label="Ism"
-            name="firstName"
+            label="Nomi"
+            name="nomi"
             rules={[
               {
                 required: true,
@@ -51,17 +58,16 @@ export function StudentForm() {
           >
             <Input />
           </Form.Item>
-          
-
-          <Form.Item label="Guruh" name="group_id" rules={[{ required: true }]}>
-            <Select
-              options={groups?.map((i) => {
-                return {
-                  label: i.name,
-                  value: i.id,
-                };
-              })}
-            />
+          <Form.Item
+            label="Image"
+            name="image"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+          >
+            <Input />
           </Form.Item>
 
           <Form.Item label="Faollik" name="active">

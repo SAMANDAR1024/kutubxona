@@ -1,4 +1,10 @@
-import { BankOutlined, HomeOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  BankOutlined,
+  HomeOutlined,
+  UserOutlined,
+  ShoppingCartOutlined,
+  LineChartOutlined,
+} from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router";
 
@@ -21,14 +27,24 @@ function Sidebar({ collapsed }: { collapsed: boolean }) {
         },
 
         {
-          key: "/categories",
+          key: "/students",
           label: <Link to="/students"> Students</Link>,
           icon: <UserOutlined />,
         },
         {
-          key: "/rents",
+          key: "/groups",
           label: <Link to="/groups"> Groups</Link>,
           icon: <BankOutlined />,
+        },
+        {
+          key: "/products",
+          label: <Link to="/products"> Products</Link>,
+          icon: <ShoppingCartOutlined />,
+        },
+        {
+          key: "/catigories",
+          label: <Link to="/catigories"> Catigoria</Link>,
+          icon: <LineChartOutlined />,
         },
       ]}
     />
