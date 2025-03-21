@@ -4,6 +4,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
   LineChartOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link } from "react-router";
@@ -45,6 +46,11 @@ function Sidebar({ collapsed }: { collapsed: boolean }) {
           key: "/catigories",
           label: <Link to="/catigories"> Catigoria</Link>,
           icon: <LineChartOutlined />,
+        },
+        {
+          key: "/buyurtma",
+          label: <Link to="/buyurtma"> Buyurtma</Link>,
+          icon: <ShoppingOutlined />,
         },
       ]}
     />

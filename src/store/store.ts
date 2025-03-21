@@ -3,10 +3,15 @@ import { GlobalStoreType } from "./store.type";
 import { GetRandomId } from "../utils/utils";
 
 export const useGlobalStore = create<GlobalStoreType>(() => {
+  const studentId =GetRandomId()
+  const groupId =GetRandomId()
+  const productId =GetRandomId()
+  const catigoriaId =GetRandomId()
+  const buyurtmaId =GetRandomId()
   return {
     students: [
       {
-        id: GetRandomId(),
+        id: studentId,
         firstName: "Samandar",
         lastName: "Zafarov",
         age: 16,
@@ -16,30 +21,35 @@ export const useGlobalStore = create<GlobalStoreType>(() => {
     ],
     groups: [
       {
-        id: GetRandomId(),
+        id: groupId,
         name: "Guruh 1",
         students_count: 0,
         active: true,
       },
-      {
-        id: GetRandomId(),
-        name: "Guruh 2",
-        students_count: 0,
-        active: false,
-      },
+      
     ],
     products: [
       {
-        id: GetRandomId(),
+        id: productId,
         nomi: "noutbook",
-        narxi:200
+        narxi: 200000,
       },
     ],
     catigoria: [
       {
-        id: GetRandomId(),
+        id: catigoriaId,
         nomi: "Noutbook",
-        image:""
+        image: "",
+      },
+    ],
+    buyurtma: [
+      {
+        id: buyurtmaId,
+        student_id: studentId,
+        product_id: productId,
+        count: 5,
+        total_price: 100,
+        manzil: `Chilonzor Najot Ta'lim`,
       },
     ],
   };

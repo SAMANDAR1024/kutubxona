@@ -24,3 +24,12 @@ export type CatigoriaType = {
   nomi: string;
   image: string;
 };
+
+export type BuyurtmaType = {
+  id: number;
+  student_id: number;
+  product_id: number;
+  count: number;
+  total_price: number;
+  manzil: string;
+};
