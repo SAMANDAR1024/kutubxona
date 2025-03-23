@@ -52,5 +52,6 @@ export const useGlobalStore = create<GlobalStoreType>(() => {
         manzil: `Chilonzor Najot Ta'lim`,
       },
     ],
+    lang:"uz"
   };
 });

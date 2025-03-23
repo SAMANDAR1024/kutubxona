@@ -1,5 +1,5 @@
 import {
-    BuyurtmaType,
+  BuyurtmaType,
   CatigoriaType,
   GroupType,
   ProductsType,
@@ -11,5 +11,6 @@ export type GlobalStoreType = {
   groups: GroupType[];
   products: ProductsType[];
   catigoria: CatigoriaType[];
-  buyurtma:BuyurtmaType[]
+  buyurtma: BuyurtmaType[];
+  lang: "uz" | "ru" | "en";
 };

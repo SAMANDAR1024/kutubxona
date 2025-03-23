@@ -1,19 +1,31 @@
 import { Table } from "antd";
+import { useFetchData } from "../hooks/useFetchData";
 import { useGlobalStore } from "../store/store";
+import { translations } from "../translations/translations";
 import { BuyurtmaForm } from "./BuyurtmaForm";
+
+
+// "https://jsonplaceholder.typicode.com/todos"
 
 export function BuyurtmaPage() {
   const productType = useGlobalStore((state) => state.products);
   const students = useGlobalStore((state) => state.students);
   const buyurtma = useGlobalStore((state) => state.buyurtma);
-  console.log(buyurtma);
+  const lang = useGlobalStore((state) => state.lang);
+  const { data, loading } = useFetchData(
+    "https://jsonplaceholder.typicode.com/todos"
+  );
   return (
-    <div className="container mx-auto p-10">
+    <div className="container mx-auto p-10 ">
       <div className="flex justify-between mb-5 ">
-        <h1 className="text-4xl font-bold">Buyurtma Page </h1>
+        <h1 className="text-4xl font-bold">{translations[lang].orders} </h1>
+
         <BuyurtmaForm />
       </div>
-
+      {loading && <div>Loading...</div>}
+      {data?.map((item) => {
+        return <div key={item.id}>{item.title}</div>;
+      })}
       <Table
         style={{ width: "1300px" }}
         columns={[
@@ -36,7 +48,7 @@ export function BuyurtmaPage() {
             },
           },
           {
-            title: "Product ID",
+            title: translations[lang].product,
             dataIndex: "product_id",
             render: (productid) => {
               const product = productType.find((item) => {
@@ -66,11 +78,8 @@ export function BuyurtmaPage() {
                   <button
                     className="bg-red-500 p-2 rounded-xl text-white"
                     onClick={() => {
-                      const new_buyurtma = buyurtma.filter((i) => {
-                        if (i.id !== del.id) {
-                          return i;
-                        }
-                      });
+                      const new_buyurtma = buyurtma.filter((i) => i.id !== del.id);
+
                       useGlobalStore.setState({ buyurtma: new_buyurtma });
                     }}
                   >
